@@ -1,0 +1,14 @@
+101 22000 Novela histórica / ficción
+Santa Evita
+102 18000 Drama / realismo social
+Enero
+103 15000 Ciencia ficción / filosófica
+La invención de Morel
+104 25000 Novela existencial / psicológica
+Sobre héroes y tumbas
+105 14000 Novela romántica / social
+Boquitas pintadas
+106 28000 Distopía / terror
+Cadáver exquisito
+107 24000 Policial / drama social
+Las viudas de los jueves

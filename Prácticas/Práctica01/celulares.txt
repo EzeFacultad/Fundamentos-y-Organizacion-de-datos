@@ -1,0 +1,12 @@
+101 250000 Samsung
+15 5 Galaxy A15 128GB
+Galaxy A15
+102 320000 Motorola
+3 6 Moto G84 256GB color azul
+Moto G84
+103 160000 Motorola
+77 7 Moto G7 64GB color negro
+Moto G7
+104 950000 Apple
+2 4 iPhone 15 256GB negro
+iPhone 15
