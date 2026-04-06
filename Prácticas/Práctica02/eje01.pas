@@ -1,4 +1,4 @@
-program Ejercicio01;
+program eje01;
 const
   fin = -1;
 
