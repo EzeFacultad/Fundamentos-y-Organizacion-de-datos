@@ -1,4 +1,4 @@
-program Corte_de_Control
+program Ejemplo_corte_control;
 const
   valoralto = 'zzzz';
 type
@@ -7,7 +7,7 @@ type
   prov = record
     provincia, partido, ciudad: str10;
     cant_varones, cant_mujeres, cant_desocupados: integer ;
-  end:
+  end;
 
   instituto = file of prov;
 
@@ -21,7 +21,7 @@ var
 procedure leer ( var archivo:instituto ; var dato:prov );
 begin
   if ( not eof( archivo ) ) then
-    read ( archivo,dato );
+    read ( archivo,dato )
   else
     dato.provincia:= valoralto;
 end;

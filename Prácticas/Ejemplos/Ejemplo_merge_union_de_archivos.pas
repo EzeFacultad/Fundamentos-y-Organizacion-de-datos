@@ -1,9 +1,10 @@
 { En este ejemplo se crea un archivo maestro que almacena la información de los 3 archivos: det1, det2 y det3.
  Cada archivo se encuentra ordenada por nombre de alumno y un alumno no se repeti, está solamente en UN "det" }
-program Emeplo_merge_union_de_archivos;
+program Ejemplo_merge_union_de_archivos;
 
 const
-  valoralto = zzzz
+  valoralto = 'zzzz';
+
 type
   str30 = string [30];
   str10 = string [10];
@@ -26,7 +27,7 @@ var
 procedure leer ( var archivo:detalle ; var dato: alumno);
 begin
   if not eof ( archivo ) then
-    read (archivo, dato);
+    read (archivo, dato)
   else
     dato.nombre := valoralto
 end;
@@ -68,8 +69,8 @@ begin
   minimo(regd1, regd2, regd3, min);
   { se procesan los tres archivos }
   while (min.nombre <> valoralto ) do begin
-    write (maestro,min)
-    minimo (regd1,regd2,regd3, min);
+    write ( maestro,min );
+    minimo( regd1,regd2,regd3, min);
   end;
   close(maestro);
 end.

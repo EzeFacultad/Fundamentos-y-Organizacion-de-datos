@@ -1,4 +1,4 @@
-program eje05;
+program eje06;
 type
   REG_celular = record
     cod, stockDisponible, stockMin: integer;
