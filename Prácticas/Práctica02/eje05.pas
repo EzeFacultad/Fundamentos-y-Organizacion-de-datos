@@ -1,18 +1,18 @@
 program eje05;
 
 const
-  fin = '9999';
+  fin = 9999;
   dimF = 5;
 
 type
   REG_maestro = record
-    codUsuario: string[4];
+    codUsuario: integer;
     fecha: string[10];
     tiempoTotal: integer;
   end;
 
   REG_detalle = record
-    codUsuario: string[4];
+    codUsuario: integer;
     fecha: string[10];
     tiempoSesion: integer;
   end;
@@ -41,7 +41,7 @@ begin
 
   for i:=1 to dimF do begin
     if ( rDetalle[i].codUsuario < min.codUsuario ) or 
-      (( rDetalle[i].codUsuario < min.codUsuario ) and ( rDetalle[i].fecha < min.fecha )) then begin
+      (( rDetalle[i].codUsuario = min.codUsuario ) and ( rDetalle[i].fecha < min.fecha )) then begin
       min:= rDetalle[i];
       pos:= i;
     end;
@@ -65,7 +65,7 @@ begin
   Rewrite( maestro );
 
   for i:=1 to dimF do begin
-    Assign( aDetalle[i], 'detalle' + i );
+    Assign( aDetalle[i], 'detalle' + InToStr(i) );
     Reset( aDetalle[i] );
     leer( aDetalle[i], rDetalle[i] );
   end;

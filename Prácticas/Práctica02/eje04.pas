@@ -68,7 +68,7 @@ begin
   Rewrite( txt );
 
   for i:=1 to 30 do begin
-    Assign( vArch[i], 'detalle' + i );
+    Assign( vArch[i], 'detalle' + InToStr(i) );
     Reset ( vArch[i] );
     leer( vArch[i], vReg[i] );
   end;
