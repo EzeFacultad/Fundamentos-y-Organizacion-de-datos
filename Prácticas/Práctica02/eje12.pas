@@ -1,4 +1,5 @@
 program eje12;
+
 const
   fin = 9999;
 

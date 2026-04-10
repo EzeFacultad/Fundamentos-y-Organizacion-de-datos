@@ -59,8 +59,7 @@ var
   min: REG_detalle;
   consumo: real;
 begin
-  // Lectura archivo MAESTRO
-  Read( maestro, rm );
+
   // Lectura de cada archivo dentro del vector
   for i:=1 to dimF do
     Leer( aDetalle[i], rDetalle[i] );
@@ -80,34 +79,29 @@ begin
     end;
 
     // Buscar en archivo MAESTRO
-    while ( rm.codProvincia <> codProvincia ) do
+    Read( maestro, rm );
+    while ( rm.codProvincia <> codProvincia ) do begin
+      
+      if (rm.cantTotalKg > 10000) then begin
+        WriteLn('(', rm.codProvincia, ') ', rm.nomProvincia);
+        WriteLn('Promedio: ', (rm.cantTotalKg / rm.cantHabitantes):0:2);
+      end;
+
       Read( maestro, rm );
+    end;
 
     rm.cantTotalKg:= rm.cantTotalKg + consumo;
 
     Seek( maestro, FilePos(maestro) - 1 );
     Write( maestro, rm );
 
-    // Actualizo el registro rm
+
     if ( not Eof(maestro) ) then
-      Read( maestro, rm );
+      if (rm.cantTotalKg > 10000) then begin
+        WriteLn('(', rm.codProvincia, ') ', rm.nomProvincia);
+        WriteLn('Promedio: ', (rm.cantTotalKg / rm.cantHabitantes):0:2);
+      end;
 
-  end;
-end;
-
-// Informar archivo MAESTRO
-procedure informarMaestro ( var maestro: archivo_maestro );
-var
-  rm: REG_maestro;
-
-begin
-  while ( not Eof(maestro) ) do begin
-      Read(maestro, rm);
-
-    if (rm.cantTotalKg > 10000) then begin
-      WriteLn('(', rm.codProvincia, ') ', rm.nomProvincia);
-      WriteLn('Promedio: ', (rm.cantTotalKg / rm.cantHabitantes):0:2);
-    end;
   end;
 end;
 
@@ -127,10 +121,6 @@ begin
   end;
 
   procesarArchivos( maestro, aDetalle );
-  
-  // Reiniciar archivo maestro
-  Reset( maestro );
-  informarMaestro( maestro );
 
   Close( maestro );
   for i:=1 to dimF do
