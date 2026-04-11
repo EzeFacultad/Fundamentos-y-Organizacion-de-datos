@@ -103,6 +103,22 @@ begin
       end;
 
   end;
+
+  Read( maestro, rm );
+  while ( not Eof(maestro) ) do begin
+    if ( rm.cantTotalKg > 10000 ) then begin
+      WriteLn( '(', rm.codProvincia, ') ', rm.nomProvincia );
+      WriteLn( 'Promedio: ', (rm.cantTotalKg / rm.cantHabitantes):0:2 );
+    end;
+
+    Read( maestro, rm );
+  end;
+
+  if (rm.cantTotalKg > 10000) then begin
+    WriteLn( '(', rm.codProvincia, ') ', rm.nomProvincia );
+    WriteLn( 'Promedio: ', (rm.cantTotalKg / rm.cantHabitantes):0:2 );
+  end;
+
 end;
 
  
