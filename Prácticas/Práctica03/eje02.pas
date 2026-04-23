@@ -8,7 +8,7 @@ type
     precio: real;
   end;
 
-  archivo_maestro = File of REG_producto;
+  archivo_producto = File of REG_producto;
 
 
 // Leer registro
@@ -24,7 +24,7 @@ begin
 end;
 
 // Leer archivo
-procedure leerArchivo( var a: archivo_maestro; var dato: REG_producto );
+procedure leerArchivo( var a: archivo_producto; var dato: REG_producto );
 begin
   if ( not Eof(a) ) then
     Read( a, dato )
@@ -33,7 +33,7 @@ begin
 end;
 
 // Cargar archivo
-procedure cargarArchivo( var a: archivo_maestro );
+procedure cargarArchivo( var a: archivo_producto );
 var
   r: REG_producto;
 
@@ -51,7 +51,7 @@ begin
 end;
 
 // Realizar bajas
-procedure bajaLogica( var a: archivo_maestro );
+procedure bajaLogica( var a: archivo_producto );
 var
   r: REG_producto;
 begin
@@ -75,7 +75,7 @@ end;
 
 // Programa principal  
 var
-  archivo: archivo_maestro;
+  archivo: archivo_producto;
 
 begin
   Assign( archivo, 'maestro' );
