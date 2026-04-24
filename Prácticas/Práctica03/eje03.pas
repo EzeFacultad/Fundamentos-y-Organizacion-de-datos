@@ -67,10 +67,10 @@ procedure opcion2();
   begin
     Reset( a );
 
+    leer( r );
     leerArchivo( a, r );
     if ( r.codigo = 0 ) then begin
-      leer( r );
-      Seek( a, FilePos(FileSize(a)) );
+      Seek( a, FileSize(a) );
       Write( a, r );
     end
     else begin
@@ -82,8 +82,6 @@ procedure opcion2();
       leerArchivo( a, r );
       // Guardamos la posición para luego guardarla en la posición 0
       pos:= r.codigo;
-      // Leemos el nuevo libro
-      leer( r );
       // Guardamos el libro en el archivo
       Seek( a, FilePos(a) - 1 );
       Write( a, r );
@@ -134,7 +132,7 @@ procedure opcion2();
   // ======= Eliminar libro
   procedure eliminarLibro( var a: archivo_libros );
   var
-    codigo, pos, posIni: integer;
+    codigo, pos: integer;
   begin
     Reset( a );
 
@@ -142,23 +140,28 @@ procedure opcion2();
     ReadLn( codigo );
 
     leerArchivo( a, r );
-    posIni:= r.codigo; // Guardamos la posición guardada en el inicio
+    pos:= r.codigo; // Guardamos la posición guardada en el inicio
+    
     while ( r.codigo <> fin ) and ( r.codigo <> codigo ) do
       leerArchivo( a, r );
 
     if ( r.codigo = codigo ) then begin
-      // Guardamos la posicion del registro eliminado
-      pos:= (FilePos(a) - 1) * -1;
-      // Al codigo le asignamos el valor de la posición que estaba en el inicio
-      r.codigo:= posIni;
+      // Volvemos donde está el registro
+      Seek( a, FilePos(a) - 1 );
+      // Actualizamos el codigo con la posición guardada en la cabezara
+      r.codigo:= pos;
+      // Guardamos el registro actualizado
+      Write( a, r );
+      // Guardamos la posición negada del registro borrado
+      pos:= FilePos(a) * -1;
+      // Volvemos al inicio
+      Reset( a );
+      // Leemos nuevamente el primer registro
+      leerArchivo( a, r );
+      // Actualizamos la posicion guardada en el primer registro
+      r.codigo:= pos;
       // Volvemos al inicio del archivo
       Reset( a );
-      // Leemos el registro
-      leerArchivo( a, r );
-      // Guardamos el nuevo valor
-      r.codigo:= pos;
-      // Volvemos al inicio
-      Seek( a, FilePos(a) - 1 );
       // Guardamos el registro actualizado
       Write( a, r );
     end;
