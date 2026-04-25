@@ -72,7 +72,7 @@ begin
 end;
 
 // Mostrar contenido del archivo
-procedure listar( var a: tArchFlores );
+procedure listar( a: tArchFlores );
 var
   r: reg_flor;
 begin
